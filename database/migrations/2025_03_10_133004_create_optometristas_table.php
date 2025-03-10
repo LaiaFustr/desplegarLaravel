@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('optometristas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id')->primary();
+            $table->unsignedInteger('idEmpleado');//Clave ajena de Usuario
+            $table->foreign('idEmpleado')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

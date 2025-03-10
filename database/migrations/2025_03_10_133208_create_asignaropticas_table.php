@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('asignaropticas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedInteger('idEmpleado');
+            $table->unsignedInteger('idOptica');
+            $table->date('fecha');
+            $table->foreign('idEmpleado')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idOptica')->references('id')->on('opticas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

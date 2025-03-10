@@ -11,9 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('anamneses', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('anamnesis', function (Blueprint $table) {
+            $table->unsignedInteger('idFicha');
+            $table->increments('id');
+            $table->boolean('compensacion');
+            $table->date('ultimarevision')->nullable();
+            $table->unsignedInteger('edad')->nullable();
+            $table->string('profesion')->nullable();
+            $table->string('horas_pantalla')->nullable();
+            
+            $table->foreign('idFicha')->references('id')->on('fichas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('anamneses');
+        Schema::dropIfExists('anamnesis');
     }
 };

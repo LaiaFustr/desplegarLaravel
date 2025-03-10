@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('horarios', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id')->primary();
+            $table->string('nombre');
+            $table->time('horaApertura');
+            $table->time('horaCierre');
+            //$table->date('festivos'); //HABLAR CON GEMA(a lo mejor hay que crear la TABLA festivos y aqui iria su clave principal)
+            $table->unsignedInteger('idAdmin');
+            
+            //$table->unique(['nombre']);
+            //??? Porque nombre debe ser unique?
+            $table->foreign('idAdmin')->references('id')->on('admins')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

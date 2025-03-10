@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fichas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->unsignedInteger('idOptometrista');
+            $table->unsignedInteger('idCliente');
+            $table->unsignedInteger('idCita');
+            $table->date('fecha');
+            $table->time('hora');
+            $table->text('descripcion')->nullable();
+            
+            $table->foreign('idCita')->references('id')->on('citas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idCliente')->references('id')->on('clientes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idOptometrista')->references('id')->on('optometristas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,11 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('visualizarfichas', function (Blueprint $table) {
-            $table->unsignedInteger('idEmpleado');
+        Schema::create('administrarfichas', function (Blueprint $table) {
+            $table->unsignedInteger('idOptometrista');
             $table->unsignedInteger('idFicha');
-            $table->foreign('idEmpleado')->references('id')->on('empleados')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idFicha')->references('id')->on('fichas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idOptometrista')->references('id')->on('optometristas');
+            $table->foreign('idFicha')->references('id')->on('fichas');
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('visualizarfichas');
+        Schema::dropIfExists('administrarfichas');
     }
 };

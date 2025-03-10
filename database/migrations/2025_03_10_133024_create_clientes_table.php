@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id')->primary();
+            $table->string('nombre',20);
+            $table->string('apellido',20);
+            $table->string('dni');
+            $table->integer('codPostal');
+            $table->string('telefono',15);
+           /*  $table->unsignedInteger('idAdmin');
+            //$table->foreign('idAdmin')->references('id')->on('admins')->onDelete('cascade')->onUpdate('cascade'); */
+            //$table->primary('id');
+            $table->unique('dni');
         });
     }
 

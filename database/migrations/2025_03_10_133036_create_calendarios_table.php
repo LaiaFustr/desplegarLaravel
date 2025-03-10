@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calendarios', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('festivos', function (Blueprint $table) {
+            $table->increments('id')->primary();
+            $table->date('fecha');
+            /* $table->boolean('festivo'); */
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calendarios');
+        Schema::dropIfExists('calendario');
     }
 };
